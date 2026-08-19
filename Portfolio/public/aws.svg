@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140">
+  <rect width="140" height="140" rx="30" fill="#FF9900" />
+  <path d="M40 85c14-16 30-22 44-18 10-12 26-14 36-6 4-6 0-14-8-16-18-4-30 10-36 14-4-4-18-18-34-14-14 4-22 18-20 34 0 0 4 10 12 10z" fill="#FFFFFF" opacity="0.14" />
+  <text x="50%" y="62%" dominant-baseline="middle" text-anchor="middle" font-family="Amazon Ember, Inter, sans-serif" font-size="46" font-weight="800" fill="#FFFFFF">aws</text>
+  <path d="M50 97c14-10 28-11 40-6" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" />
+</svg>

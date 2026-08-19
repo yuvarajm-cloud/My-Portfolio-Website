@@ -1,0 +1,406 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-grid: var(--grid);
+
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-blob-slow: blob 18s ease-in-out infinite;
+  --animate-blob-slower: blob 26s ease-in-out infinite reverse;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Premium Dark — Vercel / AWS console inspired. WCAG AA verified for body/muted text on background. */
+  --background: oklch(0.16 0.02 250);
+  --foreground: oklch(0.96 0.01 240);
+
+  --surface: oklch(0.20 0.025 250);
+  --surface-elevated: oklch(0.24 0.03 250);
+
+  --card: oklch(0.20 0.025 250 / 0.6);
+  --card-foreground: oklch(0.96 0.01 240);
+
+  --popover: oklch(0.20 0.025 250);
+  --popover-foreground: oklch(0.96 0.01 240);
+
+  --primary: oklch(0.82 0.14 220);
+  --primary-foreground: oklch(0.16 0.02 250);
+
+  --secondary: oklch(0.28 0.03 250);
+  --secondary-foreground: oklch(0.96 0.01 240);
+
+  --muted: oklch(0.24 0.025 250);
+  /* boosted lightness for ≥4.5:1 contrast on background */
+  --muted-foreground: oklch(0.78 0.02 245);
+
+  --accent: oklch(0.82 0.14 220);
+  --accent-foreground: oklch(0.16 0.02 250);
+
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(1 0 0 / 0.08);
+  --input: oklch(1 0 0 / 0.12);
+  --ring: oklch(0.85 0.16 220);
+
+  --grid: oklch(1 0 0 / 0.04);
+
+  /* Major section separation (~2 cm desktop) */
+  --section-gap: 2.5rem; /* 40px — mobile */
+
+  --chart-1: oklch(0.82 0.14 220);
+  --chart-2: oklch(0.72 0.16 160);
+  --chart-3: oklch(0.75 0.15 280);
+  --chart-4: oklch(0.78 0.16 50);
+  --chart-5: oklch(0.70 0.18 350);
+
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+.dark {
+  --background: oklch(0.16 0.02 250);
+  --foreground: oklch(0.96 0.01 240);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-gap: 3.75rem; /* 60px — tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-gap: 5rem; /* 80px — desktop (~2 cm) */
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01", "ss03";
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.78 0.14 220 / 0.15), transparent),
+      linear-gradient(to bottom, var(--color-background), var(--color-background));
+    background-attachment: fixed;
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  ::selection {
+    background: oklch(0.78 0.14 220 / 0.3);
+    color: var(--color-foreground);
+  }
+
+  /* Global focus-visible — keyboard navigation */
+  :focus {
+    outline: none;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px oklch(0.82 0.14 220 / 0.25);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .flip-card:hover .flip-card-inner,
+    .flip-card:focus-within .flip-card-inner {
+      transform: none;
+    }
+    .flip-card-back {
+      position: relative;
+      transform: none;
+      margin-top: 0.5rem;
+    }
+    .flip-card-front {
+      position: relative;
+    }
+    .flip-card-inner {
+      transform-style: flat;
+    }
+  }
+}
+
+@layer components {
+  .glass {
+    background: linear-gradient(
+      180deg,
+      oklch(1 0 0 / 0.03) 0%,
+      oklch(1 0 0 / 0.01) 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+  }
+
+  .glass-hover {
+    transition: all 0.3s ease;
+  }
+  .glass-hover:hover {
+    border-color: oklch(0.78 0.14 220 / 0.4);
+    background: linear-gradient(
+      180deg,
+      oklch(0.78 0.14 220 / 0.06) 0%,
+      oklch(1 0 0 / 0.02) 100%
+    );
+    transform: translateY(-2px);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--color-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black, transparent 80%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(180deg, oklch(0.98 0 0), oklch(0.70 0.02 240));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .accent-glow {
+    box-shadow:
+      0 0 0 1px oklch(0.78 0.14 220 / 0.3),
+      0 8px 32px -8px oklch(0.78 0.14 220 / 0.5);
+  }
+
+  .terminal-dot {
+    width: 12px; height: 12px; border-radius: 9999px;
+  }
+
+  /* Skip-to-content link — visible on focus */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 100;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  /* 3D tilt card */
+  .tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+    isolation: isolate;
+  }
+  .tilt-card:hover {
+    border-color: oklch(0.82 0.14 220 / 0.5);
+    box-shadow:
+      0 0 0 1px oklch(0.82 0.14 220 / 0.35),
+      0 20px 50px -20px oklch(0.82 0.14 220 / 0.45);
+  }
+  .tilt-spotlight {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(
+      400px circle at var(--mx, 50%) var(--my, 50%),
+      oklch(0.82 0.14 220 / 0.18),
+      transparent 45%
+    );
+  }
+  .tilt-card:hover .tilt-spotlight {
+    opacity: 1;
+  }
+
+  /* Animated gradient border for project cards */
+  .animated-border {
+    position: relative;
+  }
+  .animated-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--ab-angle, 0deg),
+      transparent 0deg,
+      oklch(0.82 0.14 220 / 0.7) 90deg,
+      transparent 180deg,
+      oklch(0.82 0.14 220 / 0.5) 270deg,
+      transparent 360deg
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: ab-spin 5s linear infinite;
+    pointer-events: none;
+  }
+  .animated-border:hover::before {
+    opacity: 1;
+  }
+
+  /* 3D flip cards */
+  .flip-card {
+    perspective: 1000px;
+  }
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  }
+  .flip-card:hover .flip-card-inner,
+  .flip-card:focus-within .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  .flip-card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Uniform gap between major page sections (not inside cards) */
+  .section-gap {
+    margin-top: var(--section-gap);
+  }
+
+  /* Recruiter inquiry form fields */
+  .recruiter-field {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: oklch(0.20 0.025 250 / 0.55);
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-foreground);
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .recruiter-field::placeholder {
+    color: oklch(0.78 0.02 245 / 0.55);
+  }
+  .recruiter-field:hover {
+    border-color: oklch(0.82 0.14 220 / 0.35);
+    background: oklch(0.20 0.025 250 / 0.72);
+  }
+  .recruiter-field:focus {
+    outline: none;
+    border-color: oklch(0.82 0.14 220 / 0.55);
+    background: oklch(0.20 0.025 250 / 0.85);
+    box-shadow: 0 0 0 3px oklch(0.82 0.14 220 / 0.18);
+  }
+}
+
+@property --ab-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes ab-spin {
+  to { --ab-angle: 360deg; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(4deg); }
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 25px) scale(0.95); }
+}
