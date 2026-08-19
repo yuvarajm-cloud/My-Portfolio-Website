@@ -346,20 +346,19 @@ Cloud Infrastructure
 
 ### GitHub
 
-Add your GitHub profile link here.
-
+[Add your GitHub profile link here.
+](https://github.com/yuvarajm-cloud)
 ### LinkedIn
 
-Add your LinkedIn profile link here.
-
+[Add your LinkedIn profile link here.
+](https://www.linkedin.com/in/yuvarajm-cloud/)
 ### Portfolio
 
-Add your live portfolio URL here.
-
+[Add your live portfolio URL here.
+](https://yuvarajcloud.xyz/)
 ### Email
 
-Add your professional email address here.
-
+yuvarajm18.tech@gmail.com
 ---
 
 # 📈 Future Improvements
