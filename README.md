@@ -214,16 +214,14 @@ My learning journey includes cloud and DevOps-focused training and certification
 
 ### Areas of Learning
 
-* AWS Cloud Fundamentals
+* DevOps Fundamentals – Professional Certification Program
 * AWS Cloud Practitioner Essentials
-* Microsoft Azure
-* Linux
-* Docker
-* Kubernetes
-* Terraform
-* Jenkins
+* Fundamentals of Docker and Kubernetes (Scaler)
+* Artificial Intelligence
+* HTML5 and CSS3
 * Git & GitHub
-* Cloud Networking
+* Introduction to UI/UX
+
 
 ---
 
